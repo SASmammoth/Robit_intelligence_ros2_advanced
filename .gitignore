@@ -1,0 +1,72 @@
+*.odt
+.vscode
+
+Lecture_materials
+
+main
+
+
+# Qt build directories
+build/
+build-*/
+
+# Qt generated files
+*.o
+*.obj
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.moc
+Makefile*
+*.pro.user
+*.pro.user.*
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# 실행 파일
+*.exe
+*.app
+
+.qtcreator/
+*.user
+
+# colcon build artifacts
+build/
+install/
+log/
+
+# ament / colcon
+COLCON_IGNORE
+AMENT_IGNORE
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# C/C++ build
+*.o
+*.so
+*.a
+*.out
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# CMake (혹시 워크스페이스 밖에서 직접 cmake 돌린 경우)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# 영상 관련
+*.mp4
+*.mkv
