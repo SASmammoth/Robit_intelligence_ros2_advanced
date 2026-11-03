@@ -70,3 +70,4 @@ cmake_install.cmake
 # 영상 관련
 *.mp4
 *.mkv
+.directory
