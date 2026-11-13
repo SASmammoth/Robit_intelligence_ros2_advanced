@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="eclipse_arm">
+    <xacro:property name="meshes_path" value="package://robot_description/meshes/eclipse_arm"/>
+
+    <!-- mani_base_link (from base_link) -->
+    <link name="mani_base_link">
+      <inertial>
+        <origin xyz="-0.235372 0.052231 -0.175674" rpy="0 0 0"/>
+        <mass value="1.121"/>
+        <inertia ixx="0.002402752" iyy="0.000787416" izz="0.002402214" ixy="0.0" iyz="0.000448" ixz="0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/mani_base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.027 0.027 0.069" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.09" length="0.142"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="arm_joint1" type="revolute">
+      <origin xyz="0.027 0.027 0.138" rpy="0 0 0"/>
+      <parent link="mani_base_link"/>
+      <child link="link1_1"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <!-- mani_base_link_MyFAKE (from base_link) -->
+    <link name="mani_base_link_MyFAKE">
+    </link>
+    <joint name="arm_joint12" type="fixed">
+      <origin xyz="0.027 0.027 0.171" rpy="${-pi/2} 0 0"/>
+      <parent link="mani_base_link"/>
+      <child link="mani_base_link_MyFAKE"/>
+    </joint>
+
+    <!-- link1_1 -->
+    <link name="link1_1">
+      <inertial>
+        <origin xyz="0.079029 0.194162 0.060138" rpy="0 0 0"/>
+        <mass value="1.213"/>
+        <inertia ixx="0.004047356" iyy="0.010005693" izz="0.010588457" ixy="-0.003477112" iyz="0.000430223" ixz="0.000256349"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.027 -0.027 -0.138" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/link1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.03" rpy="1.5708 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.055" length="0.14"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="arm_joint2" type="revolute">
+      <origin xyz="0.0 0.07 0.033" rpy="0 0 0"/>
+      <parent link="link1_1"/>
+      <child link="link2_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <!-- link2_1 -->
+    <link name="link2_1">
+      <inertial>
+        <origin xyz="0.231791 0.209153 0.009096" rpy="0 0 0"/>
+        <mass value="3.073"/>
+        <inertia ixx="0.057744395" iyy="0.005249059" izz="0.054299383" ixy="-0.003949317" iyz="0.000481893" ixz="0.000022488"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.027 -0.097 -0.171" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/link2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.002 -0.020 0.208" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.036" length="0.416"/>
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="-0.002 -0.070 0.208" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.036" length="0.416"/>
+        </geometry>
+      </collision>
+      <collision>
+        <origin xyz="-0.002 -0.120 0.208" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.036" length="0.416"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="arm_joint3" type="revolute">
+      <origin xyz="0.026857 0.0 0.416012" rpy="0 0 0"/>
+      <parent link="link2_1"/>
+      <child link="link3_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <limit upper="3.141593" lower="0.0" effort="100" velocity="100"/>
+    </joint>
+
+    <!-- link3_1 -->
+    <link name="link3_1">
+      <inertial>
+        <origin xyz="0.157573 0.335540 -0.001144" rpy="0 0 0"/>
+        <mass value="0.954"/>
+        <inertia ixx="0.014475793" iyy="0.002152945" izz="0.014288236" ixy="0.000127701" iyz="0.003328868" ixz="0.000088649"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.053857 -0.097 -0.587012" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/link3_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0265 -0.07 0.200" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.04" length="0.320"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="arm_joint4" type="revolute">
+      <origin xyz="-0.027172 -0.07 0.362527" rpy="0 0 0"/>
+      <parent link="link3_1"/>
+      <child link="link4_1"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit upper="2.0" lower="-2.0" effort="100" velocity="100"/>
+    </joint>
+
+    <!-- link3_FAKE -->
+    <link name="link3_1_FAKE">
+    </link>
+    <joint name="arm_joint3_FAKE" type="fixed">
+      <origin xyz="0.026857 -0.07 0.416012" rpy="0 0 0"/>
+      <parent link="link2_1"/>
+      <child link="link3_1_FAKE"/>
+    </joint>
+
+    <!--
+    <joint name="arm_joint4_fake_end" type="fixed">
+      <origin xyz="-0.027172 -0.07 0.362527" rpy="0 0 0"/>
+      <parent link="link3_1"/>
+      <child link="link4_fake_end"/>
+    </joint>
+    -->
+    <!-- link4_fake_end -->
+    <!--
+    <link name="link4_fake_end">
+    </link>
+    -->
+
+    <!-- link4_1 -->
+    <link name="link4_1">
+      <inertial>
+        <origin xyz="-0.028376 -0.001608 -0.000878" rpy="0 0 0"/>
+        <mass value="0.322"/>
+        <inertia ixx="0.000496446" iyy="0.000630350" izz="0.000227266" ixy="-0.000001035" iyz="-0.000013425" ixz="-0.000030849"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.026685 -0.027 -0.949539" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/link4_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0 -0.017 0.03" rpy="1.5708 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.04" length="0.15"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="arm_joint5" type="revolute">
+      <origin xyz="0.0 -0.027 0.0602" rpy="0 0 0"/>
+      <parent link="link4_1"/>
+      <child link="link5_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <limit upper="2.0071" lower="-1.7802" effort="100" velocity="100"/>
+    </joint>
+
+    <!-- link5_1 -->
+    <link name="link5_1">
+      <inertial>
+        <origin xyz="0.012843 -0.002601 -0.031057" rpy="0 0 0"/>
+        <mass value="0.332"/>
+        <inertia ixx="0.000120224" iyy="0.000199089" izz="0.000175902" ixy="0.000000053" iyz="-0.000000771" ixz="-0.000000002"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.026685 -0.0 -1.009739" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/link5_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0270 0.0265" rpy="0.0 0.0 0.0"/>
+        <geometry>
+          <cylinder radius="0.042" length="0.053"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>

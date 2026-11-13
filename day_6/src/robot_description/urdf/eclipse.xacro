@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="eclipse"
+    xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="use_mock_base" default="false"/>
+    <xacro:arg name="use_mock_arm" default="false"/>
+    <xacro:arg name="use_mock_ct" default="false"/>
+    <xacro:arg name="mock_sensor_commands" default="false"/>
+    <xacro:arg name="with_base" default="false"/>
+    <xacro:arg name="with_arm" default="false"/>
+    <xacro:arg name="with_camera_tower" default="false"/>
+    <xacro:arg name="can_port_name" default="can0"/>
+    <xacro:arg name="arm_u2d2_port_name" default="/dev/USBfollower"/>
+    <xacro:arg name="arm2_u2d2_port_name" default="/dev/USBfollower2"/>
+    <xacro:arg name="ct_u2d2_port_name" default="/dev/ttyUSB1"/>
+
+    <xacro:include filename="$(find robot_description)/urdf/eclipse_base.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/eclipse_arm.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/eclipse_gripper.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/eclipse_camera_tower.xacro"/>
+    <xacro:include filename="$(find robot_description)/ros2_control/eclipse_ros2_control.xacro"/>
+
+    <joint name="base_to_arm" type="fixed">
+        <origin xyz="-0.003 -0.003 0.006" rpy="0 0 0"/>
+        <parent link="base2main_link_1"/>
+        <child link="mani_base_link"/>
+    </joint>
+
+    <joint name="base_to_camera_tower" type="fixed">
+        <origin xyz="-0.35 0 0.1" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="camera_tower_link1"/>
+    </joint>
+
+    <joint name="arm_joint6" type="revolute">
+        <origin xyz="-1e-06 0.027 0.053" rpy="0 0 0"/>
+        <parent link="link5_1"/>
+        <child link="gripper_base_link"/>
+        <axis xyz="-1.5e-05 0.0 1.0"/>
+        <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <xacro:eclipse_base/>
+    <xacro:eclipse_arm/>
+    <xacro:eclipse_gripper/>
+    <xacro:eclipse_camera_tower/>
+
+    <xacro:eclipse_ros2_control use_mock_base="$(arg use_mock_base)" use_mock_arm="$(arg use_mock_arm)" use_mock_ct="$(arg use_mock_ct)" mock_sensor_commands="$(arg mock_sensor_commands)" with_base="$(arg with_base)" with_arm="$(arg with_arm)" with_camera_tower="$(arg with_camera_tower)" can_port_name="$(arg can_port_name)" arm_u2d2_port_name="$(arg arm_u2d2_port_name)" arm2_u2d2_port_name="$(arg arm2_u2d2_port_name)" ct_u2d2_port_name="$(arg ct_u2d2_port_name)"/>
+</robot>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="eclipse_camera_tower">
+    <xacro:property name="meshes_path" value="package://robot_description/meshes/eclipse_camera_tower"/>
+
+    <link name="camera_tower_link1">
+      <inertial>
+        <origin xyz="0.012333650623848997 0.00029415106923082575 0.6174749808753546" rpy="0 0 0"/>
+        <mass value="2.4432562533688804"/>
+        <inertia ixx="0.178309" iyy="0.164771" izz="0.015657" ixy="-2.9e-05" iyz="-0.000125" ixz="-0.005813"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="camera_tower_link2_2_1">
+      <inertial>
+        <origin xyz="-1.113178993428221e-12 1.6582568651557494e-13 0.007951342870288758" rpy="0 0 0"/>
+        <mass value="0.04690825494019739"/>
+        <inertia ixx="2e-05" iyy="5e-06" izz="1.9e-05" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0528 0.1158 -0.8306" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link2_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0528 0.1158 -0.8306" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link2_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="camera_tower_link2_1_1">
+      <inertial>
+        <origin xyz="-1.1238301955707186e-12 7.166489623955385e-14 0.00795134287266508" rpy="0 0 0"/>
+        <mass value="0.04690825494019739"/>
+        <inertia ixx="2e-05" iyy="5e-06" izz="1.9e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0528 -0.1158 -0.8306" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link2_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0528 -0.1158 -0.8306" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link2_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="camera_tower_link3_1_1">
+      <inertial>
+        <origin xyz="0.0002503853446152865 -0.0205831047644216 0.03373610842810193" rpy="0 0 0"/>
+        <mass value="0.75181784619147"/>
+        <inertia ixx="0.000661" iyy="0.000484" izz="0.00027" ixy="0.0" iyz="0.0" ixz="-3e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0528 -0.1364 -0.8526" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link3_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0528 -0.1364 -0.8526" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link3_1_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="camera_tower_link3_2_1">
+      <inertial>
+        <origin xyz="0.0002503853446264373 -0.020583104764090115 0.03373610842572605" rpy="0 0 0"/>
+        <mass value="0.75181784619147"/>
+        <inertia ixx="0.000661" iyy="0.000484" izz="0.00027" ixy="0.0" iyz="0.0" ixz="-3e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0528 0.0952 -0.8526" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link3_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0528 0.0952 -0.8526" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${meshes_path}/camera_tower_link3_2_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="ct_joint1_2" type="revolute">
+      <origin xyz="0.0528 -0.1158 0.8306" rpy="0 0 0"/>
+      <parent link="camera_tower_link1"/>
+      <child link="camera_tower_link2_2_1"/>
+      <axis xyz="0.0 0.0 1.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <joint name="ct_joint1_1" type="revolute">
+      <origin xyz="0.0528 0.1158 0.8306" rpy="0 0 0"/>
+      <parent link="camera_tower_link1"/>
+      <child link="camera_tower_link2_1_1"/>
+      <axis xyz="-0.0 -0.0 1.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <joint name="ct_joint2_1" type="revolute">
+      <origin xyz="0.0 0.0206 0.022" rpy="0 0 0"/>
+      <parent link="camera_tower_link2_1_1"/>
+      <child link="camera_tower_link3_1_1"/>
+      <axis xyz="0.0 1.0 0.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+
+    <joint name="ct_joint2_2" type="revolute">
+      <origin xyz="0.0 0.0206 0.022" rpy="0 0 0"/>
+      <parent link="camera_tower_link2_2_1"/>
+      <child link="camera_tower_link3_2_1"/>
+      <axis xyz="0.0 1.0 -0.0"/>
+      <limit upper="1.570796" lower="-1.570796" effort="100" velocity="100"/>
+    </joint>
+  </xacro:macro>
+</robot>
